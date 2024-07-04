@@ -7,13 +7,22 @@
 - npm install
 - npm run dev
 
+### Extras Personales:
+
+- Manejo de datos con localStorage. ✅
+- El nombre de usuario que se muestra en el header es dinamico, por defecto aparece un nombre y una imagen. ✅
+- Creación de vista de login con un formulario, el nombre ingresado en el formulario será el que se muestre en el header. ✅
+- Opción de cambio de imagen, implementé la funcionalidad para cambiar la imagen desde el header al dar clic en el icono de la camara. ✅
+
 ## Prueba Técnica
 
-#### Objetivo: Crear una página web de un perfil de usuario que incluya información básica, una lista de intereses y una sección de contacto.
+### Objetivo:
+
+- Crear una página web de un perfil de usuario que incluya información básica, una lista de intereses y una sección de contacto.
 
 ## Requisitos HTML y CSS:
 
-Maquetar una página web que incluya:
+#### Maquetar una página web que incluya:
 
 - Una cabecera con el nombre del usuario y una imagen de perfil. ✅
 - Una sección de "Sobre mí" con una breve descripción del usuario. ✅
@@ -33,13 +42,6 @@ Maquetar una página web que incluya:
 - Utilizar CSS Modules para el manejo de estilos. ✅
 - Agregar animaciones o transiciones suaves para mejorar la experiencia del usuario. ✅
 - Incluir tests básicos con Jest o Testing Library.
-
-### Extras Propios:
-
-- Manejo de datos con localStorage. ✅
-- El nombre de usuario que se muestra en el header es dinamico, por defecto aparece un nombre y una imagen. ✅
-- Creación de vista de login con un formulario, el nombre ingresado en el formulario será el que se muestre en el header. ✅
-- Opción de cambio de imagen, implementé la funcionalidad para cambiar la imagen desde el header al dar clic en el logo de la camara. ✅
 
 ### Entregables
 
