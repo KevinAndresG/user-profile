@@ -14,12 +14,33 @@ const Header = ({ profileImage, setProfileImage }: HeaderProps) => {
     backdropFilter: "blur(10px)",
     height: "90px",
   };
-  const [screenWidth, setScreenWidth] = useState(window.screen.width);
-  const [y, setY] = useState(window.scrollY);
-  const [user] = useState(
-    localStorage.getItem("user") ? localStorage.getItem("user") : "KevinGarcia"
-  );
+  const [screenWidth, setScreenWidth] = useState<number>(-1);
+  const [y, setY] = useState<number>(-1);
+  const [user, setUser] = useState<string>("");
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setScreenWidth(window.screen.width);
+      setY(window.scrollY);
+      setUser(localStorage.getItem("user") || "KevinGarcia");
+
+      const handleScroll = () => {
+        setY(window.scrollY);
+      };
+
+      const handleResize = () => {
+        setScreenWidth(window.screen.width);
+      };
+
+      window.addEventListener("scroll", handleScroll);
+      window.addEventListener("resize", handleResize);
+
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+        window.removeEventListener("resize", handleResize);
+      };
+    }
+  }, []);
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -30,28 +51,6 @@ const Header = ({ profileImage, setProfileImage }: HeaderProps) => {
       reader.readAsDataURL(file);
     }
   };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setY(window.scrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [y]);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenWidth(window.screen.width);
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   return (
     <header
