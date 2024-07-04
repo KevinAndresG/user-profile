@@ -1,0 +1,62 @@
+.interests {
+    width: 40%;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #2e2e2e;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .4);
+    color: #c4c4c4;
+    border-radius: 10px;
+    margin: 0;
+}
+
+.title {
+    color: #fff;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.list {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    .listItem {
+        padding: 10px;
+        background-color: #383838;
+        border-radius: 5px;
+        text-align: center;
+        width: 150px;
+        box-shadow: 0 0 3px 1px rgba(0, 0, 0, .5);
+        transition: box-shadow 0.2s ease, background-color 0.2s ease, scale 0.2s ease;
+
+        &:hover {
+            background-color: #4f4f4f;
+            box-shadow: 0 0 10px 3px rgba(0, 0, 0, .4);
+            color: #fff;
+            scale: 1.05;
+            font-weight: bold;
+        }
+    }
+}
+
+
+@media screen and (width < 1200px) {
+    .interests {
+        width: 80%;
+    }
+}
+
+@media screen and (width < 768px) {
+    .interests {
+        width: 100%;
+        min-width: 150px;
+
+        .listItem {
+            font-size: 14px;
+        }
+    }
+}

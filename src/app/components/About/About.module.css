@@ -1,0 +1,33 @@
+.about {
+    padding: 20px;
+    background-color: #2e2e2e;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .4);
+    color: #d3d3d3;
+    width: 50%;
+    border-radius: 10px;
+    margin: 0;
+}
+
+.title {
+    color: #fff;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.description {
+    line-height: 1.6;
+}
+
+@media screen and (width < 1200px) {
+    .about {
+        width: 80%;
+    }
+}
+
+@media screen and (width < 768px) {
+    .about {
+        width: 100%;
+        min-width: 100px;
+        font-size: 14px;
+    }
+}
