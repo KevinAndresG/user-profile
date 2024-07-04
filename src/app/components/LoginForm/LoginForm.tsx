@@ -14,7 +14,7 @@ const LoginForm = () => {
     setSubmited(true);
     if (username && password) {
       localStorage.setItem("user", username);
-      router.push("/");
+      router.push("/home");
     } else {
     }
   };

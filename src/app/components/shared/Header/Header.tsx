@@ -3,20 +3,34 @@ import Image from "next/image";
 import styles from "./Header.module.css";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import MobileHeader from "../MobileHeader/MobileHeader";
-const Header = () => {
+interface HeaderProps {
+  profileImage: string;
+  setProfileImage: (image: string) => void;
+}
+
+const Header = ({ profileImage, setProfileImage }: HeaderProps) => {
   const scrollStyles = {
     backgroundColor: "#3131313d",
     backdropFilter: "blur(10px)",
-    height: "70px",
+    height: "90px",
   };
   const [screenWidth, setScreenWidth] = useState(window.screen.width);
   const [y, setY] = useState(window.scrollY);
   const [user] = useState(
-    localStorage.getItem("user")
-      ? localStorage.getItem("user")
-      : "Usuario No Logueado"
+    localStorage.getItem("user") ? localStorage.getItem("user") : "KevinGarcia"
   );
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setProfileImage(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       setY(window.scrollY);
@@ -38,22 +52,34 @@ const Header = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
   return (
-    <header className={styles.header} style={y >= 100 ? scrollStyles : {}}>
-      {screenWidth <= 900 ? (
-        <MobileHeader />
-      ) : (
-        <section className={styles.userInfo}>
-          <h2 className={styles.userName}>{user}</h2>
-          <span className={styles.profileImageContainer}>
+    <header
+      className={styles.header}
+      style={y >= 100 && screenWidth > 768 ? scrollStyles : {}}
+    >
+      <section className={styles.userInfo}>
+        <span className={styles.profileImageContainer}>
+          {profileImage && (
             <Image
-              src="/userProfile.png"
+              className={styles.profileImage}
+              src={profileImage}
               alt="Profile"
               width={50}
               height={50}
-              className={styles.profileImage}
+            />
+          )}
+          <span className={styles.fileInputContainer}>
+            <input
+              className={styles.fileInput}
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
             />
           </span>
+        </span>
+        <span className={styles.userInfoContainer}>
+          <h2 className={styles.userName}>{user}</h2>
           <Link
             href="/login"
             className={styles.logOut}
@@ -63,8 +89,8 @@ const Header = () => {
           >
             Salir
           </Link>
-        </section>
-      )}
+        </span>
+      </section>
     </header>
   );
 };
